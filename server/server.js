@@ -1,40 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
-require('dotenv').config();
+const bodyParser = require('body-parser');
 
 const app = express();
+const port = 5000;
 
-// Middlewares
 app.use(cors());
-app.use(express.json());
-app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-// Static files
-app.use(express.static('public'));
+// Dados de exemplo (pode ser substituído por banco de dados)
+let records = [];
 
-// Database connection
-const DB_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/mydatabase';
-mongoose
-  .connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to the database'))
-  .catch((err) => console.error('Database connection error:', err));
-
-// Sample route
-app.get('/api', (req, res) => {
-  res.send({ message: 'Hello from the server!' });
-});
-
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
-
-let records = []; // Um array para armazenar os registros
-
-// Rota para buscar todos os registros
+// Rota para obter registros
 app.get('/api/records', (req, res) => {
   res.json(records);
 });
@@ -43,18 +20,24 @@ app.get('/api/records', (req, res) => {
 app.post('/api/records', (req, res) => {
   const newRecord = req.body;
   records.push(newRecord);
-  res.json(newRecord);
+  res.status(201).json(newRecord);
 });
 
 // Rota para excluir um registro
 app.delete('/api/records/:index', (req, res) => {
-  const index = req.params.index;
+  const { index } = req.params;
   records.splice(index, 1);
-  res.sendStatus(200); // Retorna sucesso
+  res.status(204).send();
 });
 
-// Iniciar o servidor
+// Rota para editar um registro
+app.put('/api/records/:index', (req, res) => {
+  const { index } = req.params;
+  const updatedRecord = req.body;
+  records[index] = updatedRecord;
+  res.json(updatedRecord);
+});
+
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });
-
