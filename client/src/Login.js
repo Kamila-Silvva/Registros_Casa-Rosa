@@ -1,4 +1,4 @@
-// src/components/Login.js
+// src/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

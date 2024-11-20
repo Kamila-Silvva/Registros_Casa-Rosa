@@ -2,13 +2,12 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
-import Record from './components/Record';
+import Login from './Login.js';
+import Register from './Register.js';
+import Record from './Record.js';
 import './App.css';
-import './login.js';
-import './register.js';
-import './records.js'
+import './Login.js';
+import './Register.js';
 
 
 function App() {
@@ -16,9 +15,9 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/records" element={<Record />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Records" element={<Record />} />
           <Route path="/" element={<Login />} /> {/* Defina a página inicial */}
         </Routes>
       </div>

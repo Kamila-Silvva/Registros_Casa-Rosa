@@ -1,4 +1,4 @@
-// src/components/Record.js
+// src/Record.js
 import React, { useState, useEffect } from 'react';
 
 function Record() {
