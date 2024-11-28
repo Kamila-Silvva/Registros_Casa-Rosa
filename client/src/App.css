@@ -1,218 +1,269 @@
-/* Estilo geral */
+/* Estilos gerais */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f8fd; /* Azul claro para o fundo */
+  color: #333;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
-  color: #333;
 }
 
-h1 {
-  text-align: center;
-  color: #444;
-  margin-top: 20px;
-  font-size: 1.5rem;
-}
-
-.container {
-  width: 90%;
-  max-width: 1000px;
+/* Container do formulário */
+.registro-form {
+  max-width: 900px;
   margin: 20px auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-/* Formulário */
+/* Título */
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #bf7069; /* Cor coral */
+  font-size: 26px;
+}
+
+/* Mensagens de sucesso ou erro */
+.message {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.message.success {
+  background-color: #bf7069; /* Cor coral */
+  color: white;
+}
+
+.message.error {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Estilos do formulário */
 form {
-  margin-bottom: 20px;
-}
-
-.form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  gap: 2px;
 }
 
-.form-group label {
+form div {
+  margin-bottom: 25px;
+}
+
+form label {
+  font-size: 14px;
   font-weight: bold;
-  margin-bottom: 5px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+form input, form textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
+  transition: border-color 0.3s;
 }
 
-/* Botões */
-button {
-  background-color: #28a745;
+form input:focus, form textarea:focus {
+  border-color: #bf7069; /* Cor coral quando o campo está em foco */
+  outline: none;
+}
+
+/* Estilos do botão de registro (salvar) */
+form button#salvar {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #bf7069; /* Cor coral */
   color: white;
-  padding: 10px 15px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
+  transition: background-color 0.3s;
+  width: 180px;
+  margin-top: 15px;
+  align-self: flex-end;
+}
+
+form button#salvar:hover {
+  background-color: #9e5c55; /* Cor coral mais escura no hover */
+}
+
+form button#salvar:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Input de pesquisa */
+#search {
+  padding: 10px;
+  font-size: 16px;
   width: 100%;
-  box-sizing: border-box;
+  max-width: 350px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: text;
+  display: inline-block;
+  transition: border-color 0.3s;
 }
 
-button:hover {
-  background-color: #218838;
+#search:focus {
+  border-color: #bf7069;
 }
 
-.edit-btn,
-.delete-btn {
-  padding: 5px 10px;
+#search::placeholder {
+  color: #aaa;
+}
+
+/* Botão de limpar pesquisa */
+#limpar-pesquisa {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #bf7069; /* Cor coral */
+  color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 4px;
-  margin: 5px 0;
+  transition: background-color 0.3s;
+  display: inline-block;
 }
 
-.edit-btn {
-  background-color: #ffa502;
+#limpar-pesquisa:hover {
+  background-color: #9e5c55; /* Cor coral mais escura no hover */
+}
+
+/* Estilos dos botões de ação (editar, excluir) */
+.button-container {
+  display: flex;
+  flex-direction: column; /* Mudando a direção para empilhar os botões */
+  gap: 10px; /* Menor espaçamento entre os botões */
+  align-items: center; /* Centralizando os botões */
+}
+
+.registro-list button {
+  padding: 8px 12px; /* Diminuindo o tamanho do botão */
+  font-size: 12px; /* Reduzindo o tamanho da fonte */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%; /* Garantindo que o botão ocupe toda a largura disponível */
+  max-width: 150px; /* Limita a largura máxima dos botões */
+}
+
+.registro-list button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-editar {
+  background-color: #bf7069; /* Cor coral para editar */
   color: white;
 }
 
-.delete-btn {
-  background-color: #ff4757;
+.btn-editar:hover {
+  background-color: #9e5c55;
+}
+
+.btn-excluir {
+  background-color: #f44336;
   color: white;
 }
 
-.edit-btn:hover {
-  background-color: #e0a800;
+.btn-excluir:hover {
+  background-color: #d32f2f;
 }
 
-.delete-btn:hover {
-  background-color: #e84118;
+
+/* Estilos da tabela */
+.registro-list {
+  margin-top: 40px;
 }
 
-/* Tabela */
-table {
+.registro-list table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 30px;
   overflow-x: auto;
   display: block;
 }
 
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 10px;
+.registro-list th,
+.registro-list td {
+  padding: 15px 20px;
   text-align: left;
-  word-wrap: break-word;
+  border: 1px solid #ddd;
 }
 
-th {
-  background-color: #f8f9fa;
+.registro-list th {
+  background-color: #bf7069; /* Cor coral para o cabeçalho */
+  color: white;
 }
 
-/* Responsividade - Telas pequenas (768px) */
-@media screen and (max-width: 768px) {
-  body {
-    font-size: 0.95rem;
-  }
+.registro-list td {
+  background-color: #ffffff;
+}
 
-  h1 {
-    font-size: 1.2rem;
-  }
+/* Títulos e sub-títulos */
+h3 {
+  font-size: 24px;
+  color: #333;
+  margin-top: 40px;
+}
 
-  .container {
-    width: 95%;
+/* Animações */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .registro-form {
     padding: 15px;
   }
 
-  .form-group {
-    margin-bottom: 10px;
+  form div {
+    margin-bottom: 20px;
   }
 
-  .form-group input,
-  .form-group textarea,
-  .form-group select,
-  button {
-    font-size: 0.9rem;
-    padding: 8px;
+  form input, form textarea {
+    padding: 14px;
   }
 
-  table {
-    font-size: 0.9rem;
-  }
-
-  th,
-  td {
-    padding: 8px;
-  }
-
-  .edit-btn,
-  .delete-btn {
-    width: 100%;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-}
-
-/* Responsividade - Telas muito pequenas (480px) */
-@media screen and (max-width: 480px) {
-  body {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-
-  h1 {
-    font-size: 1rem;
-  }
-
-  .container {
-    padding: 10px;
-  }
-
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    font-size: 0.85rem;
-    padding: 7px;
-  }
-
-  button {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-
-  table {
-    font-size: 0.85rem;
-  }
-
-  th,
-  td {
-    padding: 6px;
-    display: block;
+  form button#salvar {
     width: 100%;
   }
 
-  td:before {
-    content: attr(data-label);
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
+  .registro-list table {
+    font-size: 14px;
   }
 
-  .actions {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  #search {
+    width: 100%;
+    margin-right: 0;
   }
 
-  .edit-btn,
-  .delete-btn {
-    font-size: 0.85rem;
-    padding: 6px;
+  #limpar-pesquisa {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .registro-list th,
+  .registro-list td {
+    font-size: 14px;
+    padding: 10px 12px;
   }
 }
