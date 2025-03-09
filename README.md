@@ -43,16 +43,18 @@ Crie um banco de dados chamado ong no MySQL.
 
 Execute o seguinte comando SQL para criar a tabela registros:
 
-CREATE TABLE registros (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(255) NOT NULL,
-  data_entrada DATE NOT NULL,
-  data_saida DATE,
-  descricao TEXT,
-  atendido_por VARCHAR(255),
-  cpf VARCHAR(14) NOT NULL,
-  telefone VARCHAR(15) NOT NULL
-);
+    CREATE TABLE registros (
+    
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    data_entrada DATE NOT NULL,
+    data_saida DATE,
+    descricao TEXT,
+    atendido_por VARCHAR(255),
+    cpf VARCHAR(14) NOT NULL,
+    telefone VARCHAR(15) NOT NULL
+    
+    );
 
 3. **Configurar o Backend**
 
@@ -63,6 +65,7 @@ Instale as dependências:
     npm install
 
 Configure as variáveis de ambiente no arquivo .env (se necessário):
+    
     DB_HOST=localhost
     DB_USER=root
     DB_PASSWORD=
